@@ -1,9 +1,11 @@
-#include "quantum.h"
+//#include "quantum.h"
 #include "matrix.h"
 #include "debounce.h"
 #include "wait.h"
 #include "print.h"
 #include "debug.h"
+
+#    define ROWS_PER_HAND (MATRIX_ROWS)
 
 #ifndef MATRIX_IO_DELAY
 #    define MATRIX_IO_DELAY 30
@@ -19,9 +21,13 @@ extern const matrix_row_t matrix_mask[];
 
 // user-defined overridable functions
 
-__attribute__((weak)) void matrix_init_kb(void) { matrix_init_user(); }
+__attribute__((weak)) void matrix_init_kb(void) {
+    matrix_init_user();
+}
 
-__attribute__((weak)) void matrix_scan_kb(void) { matrix_scan_user(); }
+__attribute__((weak)) void matrix_scan_kb(void) {
+    matrix_scan_user();
+}
 
 __attribute__((weak)) void matrix_init_user(void) {}
 
@@ -29,11 +35,17 @@ __attribute__((weak)) void matrix_scan_user(void) {}
 
 // helper functions
 
-inline uint8_t matrix_rows(void) { return MATRIX_ROWS; }
+inline uint8_t matrix_rows(void) {
+    return MATRIX_ROWS;
+}
 
-inline uint8_t matrix_cols(void) { return MATRIX_COLS; }
+inline uint8_t matrix_cols(void) {
+    return MATRIX_COLS;
+}
 
-inline bool matrix_is_on(uint8_t row, uint8_t col) { return (matrix[row] & ((matrix_row_t)1 << col)); }
+inline bool matrix_is_on(uint8_t row, uint8_t col) {
+    return (matrix[row] & ((matrix_row_t)1 << col));
+}
 
 inline matrix_row_t matrix_get_row(uint8_t row) {
     // Matrix mask lets you disable switches in the returned matrix data. For example, if you have a
@@ -43,12 +55,6 @@ inline matrix_row_t matrix_get_row(uint8_t row) {
 #else
     return matrix[row];
 #endif
-}
-
-// Deprecated.
-bool matrix_is_modified(void) {
-    if (debounce_active()) return false;
-    return true;
 }
 
 #if (MATRIX_COLS <= 8)
@@ -84,16 +90,22 @@ uint8_t matrix_key_count(void) {
     return count;
 }
 
-/*　`matrix_io_delay ()` exists for backwards compatibility. From now on, use matrix_output_unselect_delay().　*/
-__attribute__((weak)) void matrix_io_delay(void) { wait_us(MATRIX_IO_DELAY); }
-
-__attribute__((weak)) void matrix_output_select_delay(void) { waitInputPinDelay(); }
-__attribute__((weak)) void matrix_output_unselect_delay(void) { matrix_io_delay(); }
+/* `matrix_io_delay ()` exists for backwards compatibility. From now on, use matrix_output_unselect_delay(). */
+__attribute__((weak)) void matrix_io_delay(void) {
+    wait_us(MATRIX_IO_DELAY);
+}
+__attribute__((weak)) void matrix_output_select_delay(void) {
+    waitInputPinDelay();
+}
+__attribute__((weak)) void matrix_output_unselect_delay(uint8_t line, bool key_pressed) {
+    matrix_io_delay();
+}
 
 // CUSTOM MATRIX 'LITE'
 __attribute__((weak)) void matrix_init_custom(void) {}
-
-__attribute__((weak)) bool matrix_scan_custom(matrix_row_t current_matrix[]) { return true; }
+__attribute__((weak)) bool matrix_scan_custom(matrix_row_t current_matrix[]) {
+    return true;
+}
 
 __attribute__((weak)) void matrix_init(void) {
     matrix_init_custom();
@@ -104,18 +116,21 @@ __attribute__((weak)) void matrix_init(void) {
         matrix[i]     = 0;
     }
 
-    debounce_init(MATRIX_ROWS);
+    debounce_init(ROWS_PER_HAND);
 
-    matrix_init_quantum();
+    matrix_init_kb();
 }
 
 __attribute__((weak)) uint8_t matrix_scan(void) {
     bool changed = matrix_scan_custom(raw_matrix);
 
-    debounce(raw_matrix, matrix, MATRIX_ROWS, changed);
+    changed = debounce(raw_matrix, matrix, ROWS_PER_HAND, changed);
 
-    matrix_scan_quantum();
+    //matrix_scan_quantum();
+    matrix_scan_kb();
     return changed;
 }
 
-__attribute__((weak)) bool peek_matrix(uint8_t row_index, uint8_t col_index, bool raw) { return 0 != ((raw ? raw_matrix[row_index] : matrix[row_index]) & (MATRIX_ROW_SHIFTER << col_index)); }
+__attribute__((weak)) bool peek_matrix(uint8_t row_index, uint8_t col_index, bool raw) {
+    return 0 != ((raw ? raw_matrix[row_index] : matrix[row_index]) & (MATRIX_ROW_SHIFTER << col_index));
+}

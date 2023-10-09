@@ -56,9 +56,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			_______	,	_______	,							_______	,	_______	,			_______	,	_______
 ),
 [_SYS]=LAYOUT(  //SYS (System utilz)
-			RESET	,	RGB_TOG	,	RGB_VAD	,	RGB_VAI	,	KC_ASON	,	KC_ASOFF	,							XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,
-			EEP_RST	,	RGB_MOD	,	RGB_SAD	,	RGB_SAI	,	KC_ASUP	,	KC_ASDN	,							XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,
-			XXXXXXX	,	RGB_RMOD	,	RGB_HUD	,	RGB_HUI	,	KC_ASRP	,	XXXXXXX	,	XXXXXXX	,			XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,
+			_______	,	RGB_TOG	,	RGB_VAD	,	RGB_VAI	,	_______	,	_______	,							XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,
+			_______	,	RGB_MOD	,	RGB_SAD	,	RGB_SAI	,	_______	,	_______	,							XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,
+			XXXXXXX	,	RGB_RMOD	,	RGB_HUD	,	RGB_HUI	,	_______	,	XXXXXXX	,	XXXXXXX	,			XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,	XXXXXXX	,
 	_______	,							_______	,	_______	,	_______	,	_______	,	XXXXXXX	,	_______	,	_______	,	_______	,	_______	,
 			_______	,	_______	,							_______	,	_______	,			_______	,	_______
 )
@@ -106,6 +106,7 @@ const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     rgb_scllock_layer
 );
 
+/*
 bool led_update_user(led_t led_state) {
     rgblight_set_layer_state(0, IS_HOST_LED_ON(USB_LED_NUM_LOCK));
     rgblight_set_layer_state(1, IS_HOST_LED_ON(USB_LED_CAPS_LOCK));
@@ -113,7 +114,9 @@ bool led_update_user(led_t led_state) {
 
     return true;
 }
+*/
 
+/*
 void keyboard_post_init_user(void) {
     rgblight_layers = rgb_layers;
     //rgblight_mode_noeeprom(RGBLIGHT_MODE_RGB_TEST);
@@ -123,3 +126,4 @@ void keyboard_post_init_user(void) {
     debug_matrix = true;
 #endif
 }
+*/

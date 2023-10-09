@@ -17,18 +17,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "config_common.h"
+//#include "config_common.h"
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID 0xBB01
-#define PRODUCT_ID 0x0011
-#define DEVICE_VER 0x0001
-#define MANUFACTURER Hanachi-ap
-#define PRODUCT Ergotonic_49
+//#define VENDOR_ID 0xBB01
+//#define PRODUCT_ID 0x0011
+//#define DEVICE_VER 0x0001
+//#define MANUFACTURER Hanachi-ap
+//#define PRODUCT Ergotonic_49
 
 /* key matrix size */
 #define MATRIX_ROWS 4
 #define MATRIX_COLS 14
+
+#define MATRIX_MASKED
 
 /*
  * Keyboard Matrix Assignments
@@ -40,11 +42,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *                  ROW2COL = ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
  */
-#define MATRIX_ROW_PINS { F4, F5, F6, F7}
-#define MATRIX_COL_PINS { D1, D0, D4, C6, D7, E6, B4, D1, D0, D4, C6, D7, E6, B4}
-#define UNUSED_PINS
+//#define MATRIX_ROW_PINS { F4, F5, F6, F7}
+//#define MATRIX_COL_PINS { D1, D0, D4, C6, D7, E6, B4, D1, D0, D4, C6, D7, E6, B4}
+//#define UNUSED_PINS
 /* COL2ROW, ROW2COL */
-#define DIODE_DIRECTION COL2ROW
+//#define DIODE_DIRECTION COL2ROW
 
 /*
  * Split Keyboard specific options, make sure you have 'SPLIT_KEYBOARD = yes' in your rules.mk, and define SOFT_SERIAL_PIN.
@@ -61,16 +63,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define BACKLIGHT_LEVELS 3
 //#define BACKLIGHT_BREATHING
 
-#define RGB_DI_PIN D3
-#ifdef RGB_DI_PIN
-#    define RGBLED_NUM 17
-#    define RGBLIGHT_HUE_STEP 4
-#    define RGBLIGHT_SAT_STEP 4
-#    define RGBLIGHT_VAL_STEP 4
-#    define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
-#    define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
-/*== all animations enable ==*/
-#    define RGBLIGHT_ANIMATIONS
+//#define WS2812_DI_PIN D3
+
+//#ifdef RGB_DI_PIN
+// #    define RGBLED_NUM 17
+// #    define RGBLIGHT_HUE_STEP 4
+// #    define RGBLIGHT_SAT_STEP 4
+// #    define RGBLIGHT_VAL_STEP 4
+// #    define RGBLIGHT_LIMIT_VAL 255 /* The maximum brightness level */
+// #    define RGBLIGHT_SLEEP  /* If defined, the RGB lighting will be switched off when the host goes to sleep */
+// /*== all animations enable ==*/
+// #    define RGBLIGHT_ANIMATIONS
+
 /*== or choose animations ==*/
 //#    define RGBLIGHT_EFFECT_BREATHING
 //#    define RGBLIGHT_EFFECT_RAINBOW_MOOD
@@ -87,7 +91,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /*==== use exp() and sin() ====*/
 //#    define RGBLIGHT_EFFECT_BREATHE_CENTER 1.85  // 1 to 2.7
 //#    define RGBLIGHT_EFFECT_BREATHE_MAX    255   // 0 to 255
-#endif
+//#endif
 
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
@@ -96,9 +100,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MATRIX_HAS_GHOST
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
-#define LOCKING_SUPPORT_ENABLE
+//#define LOCKING_SUPPORT_ENABLE
 /* Locking resynchronize hack */
-#define LOCKING_RESYNC_ENABLE
+//#define LOCKING_RESYNC_ENABLE
 
 /* If defined, GRAVE_ESC will always act as ESC when CTRL is held.
  * This is useful for the Windows task manager shortcut (ctrl+shift+esc).
@@ -143,8 +147,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_ONESHOT
 
 /* disable these deprecated features by default */
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
+//#define NO_ACTION_MACRO
+//#define NO_ACTION_FUNCTION
 
 /* Bootmagic Lite key configuration */
 //#define BOOTMAGIC_LITE_ROW 0
@@ -155,9 +159,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODERS_PAD_B { B3, B6, D2 }
 #define ENCODER_RESOLUTIONS { 4,4,4 }
 
-#define AUTO_SHIFT_TIMEOUT 190
-#define TAPPING_TERM 200
-#define PERMISSIVE_HOLD
+//#define AUTO_SHIFT_TIMEOUT 190
+//#define TAPPING_TERM 200
+//#define PERMISSIVE_HOLD
 //#define RETRO_TAPPING
 //#define TAPPING_FORCE_HOLD
 //#define IGNORE_MOD_TAP_INTERRUPT
@@ -168,4 +172,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 
 
-#define TAP_MOD_DELAY  10
+//#define TAP_MOD_DELAY  10
+
+#define MATRIX_MASKED
